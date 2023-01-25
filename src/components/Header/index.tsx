@@ -1,13 +1,21 @@
 import { HeaderContainer } from './styles'
-import { Scroll, Timer } from 'phosphor-react'
+import { Scroll, Timer, Sun, Moon } from 'phosphor-react'
 
 import logoIgnite from '../../assets/logo-ignite.svg'
 import { NavLink } from 'react-router-dom'
+import { useThemeContext } from '../../contexts/ThemeContext'
 
 export function Header() {
+  const { toggleTheme, isDarkTheme } = useThemeContext()
+
   return (
     <HeaderContainer>
-      <img src={logoIgnite} alt="" />
+      <div>
+        <img src={logoIgnite} alt="" />
+        <button onClick={() => toggleTheme()}>
+          {isDarkTheme ? <Sun size={24} /> : <Moon size={24} />}
+        </button>
+      </div>
       <nav>
         <NavLink to="/" title="Timer">
           <Timer size={24} />
